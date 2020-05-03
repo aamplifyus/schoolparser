@@ -1,0 +1,22 @@
+[run]
+omit=*__init__*,eztrack/pipeline/airflow/*,eztrack/preprocess/preprocess_eeg.py,eztrack/cli/*,eztrack/base/*,eztrack/fragility/hankel.py,eztrack/fragility/linearsystem.py,eztrack/pipeline/analysis/execute/runmerge.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    @deprecated
+
+    # Don't complain if non-runnable code isn't run:
+    if 0:
+    if __name__ == .__main__.:
+
+    # Don't complain on verbose arguments
+    if verbose:
+
+    # Don't complain if tests don't hit defensive assertion code:
+    raise NotImplementedError
+    raise ImportError
+
+    # don't need to test the bids validator function
+    # it is used in unit tests
+    _bids_validate
