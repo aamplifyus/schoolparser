@@ -1,1 +1,0 @@
-# EZTrack logs go in this directory.
