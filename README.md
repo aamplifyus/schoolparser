@@ -21,7 +21,9 @@ schoolparser is intended to be a lightweight wrapper for easily analyzing large 
     pandas
     joblib
     requests
-    requests-html bs4 colorama stem
+    requests-html bs4 colorama stem selenium
+    xlrd
+    openpyxl
     matplotlib
     seaborn
     
