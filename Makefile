@@ -4,22 +4,6 @@ PYTESTS ?= pytest
 CODESPELL_SKIPS ?= "doc/auto_*,*.fif,*.eve,*.gz,*.tgz,*.zip,*.mat,*.stc,*.label,*.w,*.bz2,*.annot,*.sulc,*.log,*.local-copy,*.orig_avg,*.inflated_avg,*.gii,*.pyc,*.doctree,*.pickle,*.inv,*.png,*.edf,*.touch,*.thickness,*.nofix,*.volume,*.defect_borders,*.mgh,lh.*,rh.*,COR-*,FreeSurferColorLUT.txt,*.examples,.xdebug_mris_calc,bad.segments,BadChannels,*.hist,empty_file,*.orig,*.js,*.map,*.ipynb,searchindex.dat,install_mne_c.rst,plot_*.rst,*.rst.txt,c_EULA.rst*,*.html,gdf_encodes.txt,*.svg"
 CODESPELL_DIRS ?= eztrack/ doc/ tutorials/ examples/ tests/
 
-MARCCDIR=ali39@jhu.edu@gateway2.marcc.jhu.edu:/home-1/ali39@jhu.edu/data/epilepsy_bids/
-
-LOCAL_RESULTSDIR=/home/adam2392/hdd/derivatives/
-EXTERNAL_RESULTSDIR=/media/adam2392/SEAGATE_HDD/derivatives/
-
-LOCALDIR=/home/adam2392/hdd2/data/
-EXTERNALDIR=/media/adam2392/SEAGATE_HDD/data/
-
-LOCALDIR=/Users/adam2392/Downloads/tngpipeline/sourcedata/
-#LOCALDIR=/Users/adam2392/Dropbox/phd_research/data/epilepsy_bids_data/
-EXTERNALDIR=/Volumes/SEAGATE_HDD/sourcedata/
-
-MARCC_USER=ali39@jhu.edu
-ssh 							:= ssh $(port)
-remote	          				:= $(MARCC_USER)@gateway2.marcc.jhu.edu
-
 all: clean inplace test
 
 clean-pyc:
@@ -56,20 +40,11 @@ codespell-error:  # running on travis
 	@echo "Running code-spell check"
 	@codespell -i 0 -q 7 -S $(CODESPELL_SKIPS) --ignore-words=ignore_words.txt $(CODESPELL_DIRS)
 
-cli:
-	pip install click
-	python ./eztrack/cli/setup.py develop
 
 inplace:
 	$(PYTHON) setup.py install
     pip install --upgrade --no-deps https://api.github.com/repos/mne-tools/mne-python/zipball/master
     pip install --upgrade https://api.github.com/repos/mne-tools/mne-bids/zipball/master
-
-install-cli:
-	# install dev versions of mne-python, mne-bids
-	pip install --upgrade --no-deps https://api.github.com/repos/mne-tools/mne-python/zipball/master
-	pip install --upgrade https://api.github.com/repos/mne-tools/mne-bids/zipball/master
-	python ./eztrack/cli/setup.py develop
 
 test: inplace check-manifest
 	rm -f .coverage
@@ -97,19 +72,6 @@ pycodestyle:
 	@echo "Running pycodestyle"
 	@pycodestyle
 
-push-marcc:
-	rsync -aP $(LOCALDIR) $(MARCCDIR);
-
-push-external:
-#	rsync -aP $(LOCALDIR) $(EXTERNALDIR) --exclude='*/tempdir/';
-	rsync -aP $(LOCAL_RESULTSDIR) $(EXTERNAL_RESULTSDIR);
-
-pull-marcc:
-	rsync -aP $(MARCCDIR) $(LOCALDIR);
-
-pull-external:
-	rsync -aP $(EXTERNALDIR) $(LOCALDIR) --exclude='*/tempdir/';
-
 check-manifest:
 	check-manifest --ignore .circleci*,doc,benchmarks,notebooks,data,tests
 
@@ -119,7 +81,8 @@ upload-pipy:
 black:
 	@if command -v black > /dev/null; then \
 		echo "Running black"; \
-		black --check eztrack; \
+		black --check schoolparser; \
+		black schoolparser; \
 	else \
 		echo "black not found, please install it!"; \
 		exit 1; \
@@ -127,7 +90,4 @@ black:
 	@echo "black passed"
 
 check:
-	@$(MAKE) -k black pydocstyle codespell-error
-
-ssh:
-	$(ssh) $(remote)
+	@$(MAKE) -k black pydocstyle codespell-error check-manifest

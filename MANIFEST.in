@@ -3,15 +3,15 @@ include *.md
 include coverage.svg
 include pylint.svg
 include LICENSE
-include eztrack/__init__.py
+include schoolparser/__init__.py
 include *.txt
 
 recursive-include examples *.py
 recursive-include examples *.txt
 recursive-include examples *.rst
-recursive-include eztrack *.py
-recursive-include eztrack *.md
-recursive-include eztrack *.mplstyle
+recursive-include schoolparser *.py
+recursive-include schoolparser *.md
+recursive-include schoolparser *.mplstyle
 
 ### Exclude
 
@@ -32,7 +32,7 @@ recursive-exclude notebooks *
 recursive-exclude tests *
 recursive-exclude data *
 
-exclude eztrack/pipeline/airflow
-exclude eztrack/pipeline/snakemake
-recursive-exclude eztrack/pipeline/airflow *
-recursive-exclude eztrack/pipeline/snakemake *
+exclude schoolparser/pipeline/airflow
+exclude schoolparser/pipeline/snakemake
+recursive-exclude schoolparser/pipeline/airflow *
+recursive-exclude schoolparser/pipeline/snakemake *

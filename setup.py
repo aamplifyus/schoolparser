@@ -2,7 +2,6 @@ import os
 import sys
 from distutils.core import setup
 
-import numpy
 from setuptools import find_packages
 
 """
@@ -17,37 +16,36 @@ To test on test pypi:
     twine upload --repository testpypi dist/*
     
     # test upload
-    pip install -i https://test.pypi.org/simple/ --no-deps eztrack
+    pip install -i https://test.pypi.org/simple/ --no-deps schoolparser
 
     twine upload dist/* 
 """
 
-PACKAGE_NAME = "eztrack"
-with open(os.path.join("eztrack", "__init__.py"), "r") as fid:
+PACKAGE_NAME = "schoolparser"
+with open(os.path.join("schoolparser", "__init__.py"), "r") as fid:
     for line in (line.strip() for line in fid):
         if line.startswith("__version__"):
             version = line.split("=")[1].strip().strip("'").strip('"')
             break
 if version is None:
     raise RuntimeError("Could not determine version")
-DESCRIPTION = "An analytics software-package for eeg rawdata and time-series transformations done on it."
-URL = "https://github.com/adam2392/eztrack/"
+DESCRIPTION = "A web-scraper to get raw emails and social media handles from web urls."
+URL = "https://github.com/adam2392/schoolparser/"
 MINIMUM_PYTHON_VERSION = 3, 6  # Minimum of Python 3.6
 REQUIRED_PACKAGES = [
     "numpy>=1.14.5",
     "scipy>=1.1.0",
-    "scikit-learn>=0.19.2",
     "pandas>=0.23.4",
-    "pybids>=0.10",
-    "pybv>=0.2.0",
     "joblib>=0.14",
+    "requests",
+    "requests-html",
+    "bs4",
+    "colorama",
+    "stem",
+    "selenium",
     "natsort",
     "tqdm",
     "xlrd",
-    "matplotlib>=3.2.1",
-    "seaborn",
-    "mne>=0.20.0",
-    "mne-bids>=0.4",
     "click_help_colors",
 ]
 CLASSIFICATION_OF_PACKAGE = [
@@ -65,7 +63,6 @@ CLASSIFICATION_OF_PACKAGE = [
 ]
 AUTHORS = [
     "Adam Li",
-    "Patrick Myers",
 ]
 
 
@@ -88,11 +85,10 @@ setup(
     license="GNU General Public License (GPL)",
     packages=find_packages(exclude=["tests"]),
     project_urls={
-        "Documentation": "https://github.com/adam2392/eztrack/docs/",
+        "Documentation": "https://github.com/adam2392/schoolparser/docs/",
         "Source": URL,
-        "Tracker": "https://github.com/adam2392/eztrack/issues",
+        "Tracker": "https://github.com/adam2392/schoolparser/issues",
     },
-    include_dirs=[numpy.get_include()],
     install_requires=REQUIRED_PACKAGES,
     include_package_data=True,
     classifiers=CLASSIFICATION_OF_PACKAGE,

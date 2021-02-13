@@ -1,0 +1,38 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+scipy = "*"
+pandas = "*"
+joblib = "*"
+requests = "*"
+requests-html = "*"
+bs4 = "*"
+colorama = "*"
+stem = "*"
+selenium = "*"
+xlrd = "*"
+socials = "*"
+tqdm = "*"
+
+[dev-packages]
+black = "*"
+sphinx = "*"
+pydocstyle = "*"
+check-manifest = "*"
+codespell = "*"
+sphinx-bootstrap-theme = "*"
+pytest = "*"
+pytest-cov = "*"
+coverage = "*"
+typing-extensions = "*"
+mypy = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
