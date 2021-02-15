@@ -17,7 +17,8 @@ def main():
     Operates on school URLs that have been manually added.
     """
     # where to save output excel file to
-    datadir = "/Users/adam2392/Google Drive - aamplify/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach"
+    datadir = "/Users/adam2392/Google Drive (aamplify)/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach"
+    fname = "school_tables.xlsx"
 
     # store emails/phones per school as a list inside a dictionary
     emails = collections.defaultdict(dict)
@@ -37,23 +38,28 @@ def main():
     )
 
     # create data frame of output
-    output_fpath = Path(datadir) / "school_tables.xlsx"
+    output_fpath = Path(datadir) / fname
     school_df = scraped_emails_to_df(emails, output_fpath)
 
-    school_df = pd.read_excel(output_fpath, index_col=None)
-    already_sent_emails = pd.read_excel(
-        output_fpath, index_col=None, sheet_name="personalized"
-    )
-    already_sent_emails = already_sent_emails["emails"].tolist()
-    old_emails = []
-    for emails in already_sent_emails:
-        split_emails = re.split(",|\n| ", emails)
-        split_emails = [email for email in split_emails if email not in [""]]
-        # print(split_emails)
-        old_emails.extend(split_emails)
-    # print(old_emails)
+    # check if any emails overlap with what we already have
+    # school_df = pd.read_excel(output_fpath, index_col=None)
+    # already_sent_emails = pd.read_excel(
+    #     output_fpath, index_col=None, sheet_name="personalized"
+    # )
+    # already_sent_emails = already_sent_emails["emails"].tolist()
+    # old_emails = []
+    # for emails in already_sent_emails:
+    #     split_emails = re.split(",|\n| ", emails)
+    #     split_emails = [email for email in split_emails if email not in [""]]
+    #     # print(split_emails)
+    #     old_emails.extend(split_emails)
+    # # print(old_emails)
+    #
+    # new_emails = [
+    #     email for email in school_df["email"].tolist() if email not in old_emails
+    # ]
+    # print(*new_emails, sep=",")
 
-    new_emails = [
-        email for email in school_df["email"].tolist() if email not in old_emails
-    ]
-    print(*new_emails, sep=",")
+
+if __name__ == '__main__':
+    main()

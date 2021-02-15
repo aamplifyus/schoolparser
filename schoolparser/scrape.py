@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from requests_html import HTMLSession
 
-from schoolparser.read import logger
+from schoolparser.base import logger
 
 # init the colorama module
 colorama.init()

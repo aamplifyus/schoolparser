@@ -1,12 +1,9 @@
 import collections
 import logging
-import random
 import re
-import socials
 
 import pandas as pd
-import requests
-from bs4 import BeautifulSoup as bs
+import socials
 
 from schoolparser.base import SCHOOL_URLS
 from schoolparser.scrape import _scrape_contact_from_url

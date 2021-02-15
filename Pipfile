@@ -17,6 +17,7 @@ selenium = "*"
 xlrd = "*"
 socials = "*"
 tqdm = "*"
+openpyxl = "*"
 
 [dev-packages]
 black = "*"
