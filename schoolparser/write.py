@@ -1,17 +1,21 @@
 import collections
 import datetime
 from typing import Dict
-
+from pathlib import Path
 import pandas as pd
 
 
-def scraped_emails_to_df(emails: Dict, output_fpath: str = None) -> pd.DataFrame:
+def scraped_emails_to_df(
+    emails: Dict, output_fpath: str = None, overwrite: bool = False
+) -> pd.DataFrame:
     """Convert scraped emails (dictionary of lists) to Dataframe.
 
     Parameters
     ----------
     emails : dict
     output_fpath : str | pathlib.Path
+    overwrite : bool
+        Whether to overwrite or append to the existing file (default).
 
     Returns
     -------
@@ -39,5 +43,9 @@ def scraped_emails_to_df(emails: Dict, output_fpath: str = None) -> pd.DataFrame
 
     print(school_df)
     if output_fpath is not None:
+        output_fpath = Path(output_fpath)
+        if not overwrite and output_fpath.exists():
+            old_df = pd.read_excel(output_fpath, index_col=None)
+            school_df = pd.concat((old_df, school_df))
         school_df.to_excel(output_fpath, index=None)
     return school_df

@@ -97,7 +97,9 @@ SCHOOL_SOCIAL_URLS = {
     "John O'Connell hs": [
         "https://www.sfusd.edu/school/john-oconnell-high-school/student-services/counseling-services"
     ],
-    "June Jordan hs": [],
+    "June Jordan hs": ["https://www.jjse.org/"],
+    "Skyline hs": ["https://www.ousd.org/skyline.about.faculty-staff"],
+    "Oakland Technical hs": ["https://oaklandtech.com/staff/counseling/"],
     "Abraham Lincoln hs": ["https://www.sfusd.edu/school/abraham-lincoln-high-school"],
     "Lowell hs": [
         "https://www.sfusd.edu/school/lowell-high-school/school-information/contact-information"

@@ -1,14 +1,20 @@
 import collections
-import re
 from pathlib import Path
 
-import pandas as pd
 from joblib import Parallel, delayed
 from tqdm import tqdm
 
 from schoolparser.base import SCHOOL_SOCIAL_URLS
 from schoolparser.scrape import _scrape_contact_from_url
 from schoolparser.write import scraped_emails_to_df
+
+# SCHOOL_SOCIAL_URLS = {
+# "Abraham Lincoln hs": ["https://www.sfusd.edu/school/abraham-lincoln-high-school"],
+# "Washington hs": ["https://sites.google.com/sfusd.edu/counseling/counselors/"],
+# "June Jordan hs": ['https://www.jjse.org/'],
+# "Skyline hs": ['https://www.ousd.org/skyline.about.faculty-staff'],
+# "Oakland Technical hs": ['https://oaklandtech.com/staff/counseling/'],
+# }
 
 
 def main():
@@ -19,6 +25,7 @@ def main():
     # where to save output excel file to
     datadir = "/Users/adam2392/Google Drive (aamplify)/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach"
     fname = "school_tables.xlsx"
+    overwrite = False
 
     # store emails/phones per school as a list inside a dictionary
     emails = collections.defaultdict(dict)
@@ -39,7 +46,7 @@ def main():
 
     # create data frame of output
     output_fpath = Path(datadir) / fname
-    school_df = scraped_emails_to_df(emails, output_fpath)
+    school_df = scraped_emails_to_df(emails, output_fpath, overwrite=overwrite)
 
     # check if any emails overlap with what we already have
     # school_df = pd.read_excel(output_fpath, index_col=None)
@@ -61,5 +68,5 @@ def main():
     # print(*new_emails, sep=",")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

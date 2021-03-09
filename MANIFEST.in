@@ -5,6 +5,8 @@ include pylint.svg
 include LICENSE
 include schoolparser/__init__.py
 include *.txt
+include *.lock
+include Pipfile
 
 recursive-include examples *.py
 recursive-include examples *.txt
