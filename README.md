@@ -2,7 +2,6 @@
 Master repo with schoolparser.
 
 [![CircleCI](https://circleci.com/gh/aamplifyus/schoolparser.svg?style=svg&circle-token=be3280d393039eac5067ac529b59241a235a2d4d)](https://circleci.com/gh/aamplifyus/schoolparser)
-[![Coverage Status](./coverage.svg)](./coverage.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 ## Intended Users / Usage
@@ -13,6 +12,7 @@ schoolparser team.
 # Installation Guide
 schoolparser is intended to be a lightweight wrapper for easily analyzing large batches of patients with EEG data. eegio relies on the following libraries to work:
 
+```
     numpy
     scipy
     scikit-learn
@@ -22,19 +22,32 @@ schoolparser is intended to be a lightweight wrapper for easily analyzing large 
     requests-html bs4 colorama stem selenium
     xlrd
     openpyxl
+```
 
 Optionally
 
+```
     matplotlib
     seaborn
-    
+```
+
 Setup environment from pipenv
 
-    pipenv install
+```
+pipenv install
+```
 
 For dev packages
 
-    pipenv install --dev
+```
+pipenv install --dev
+```
+
+Then install schoolparser
+
+```
+pipenv install -e .
+```
 
 ## From Conda
 

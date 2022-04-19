@@ -23,9 +23,13 @@ def main():
     Operates on school URLs that have been manually added.
     """
     # where to save output excel file to
-    datadir = "/Users/adam2392/Google Drive (aamplify)/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach"
-    fname = "school_tables.xlsx"
+    datadir = Path("/Users/adam2392/adam@aamplify.us.org - Google Drive/My Drive/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach")
+    fname = "school_tables_new.xls"
     overwrite = False
+
+    if not datadir.exists():
+        raise RuntimeError(f'Please set the output directory for AAMPLIFY correctly. '
+                           f'The current one: {datadir} does not exist.')
 
     # store emails/phones per school as a list inside a dictionary
     emails = collections.defaultdict(dict)

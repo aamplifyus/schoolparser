@@ -43,6 +43,7 @@ def scraped_emails_to_df(
 
     print(school_df)
     if output_fpath is not None:
+        print(f'Writing final parse to {output_fpath}.')
         output_fpath = Path(output_fpath)
         if not overwrite and output_fpath.exists():
             old_df = pd.read_excel(output_fpath, index_col=None)

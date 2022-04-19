@@ -210,6 +210,8 @@ def read_contactinfo_from_webpage(url):
         email_found = re_match.group()
         if "familylink" in email_found:
             continue
+        if not email_found.endswith('.org'):
+            continue
         email_list.add(email_found)
 
     # search for phone numbers
