@@ -8,14 +8,6 @@ from schoolparser.base import SCHOOL_SOCIAL_URLS
 from schoolparser.scrape import _scrape_contact_from_url
 from schoolparser.write import scraped_emails_to_df
 
-# SCHOOL_SOCIAL_URLS = {
-# "Abraham Lincoln hs": ["https://www.sfusd.edu/school/abraham-lincoln-high-school"],
-# "Washington hs": ["https://sites.google.com/sfusd.edu/counseling/counselors/"],
-# "June Jordan hs": ['https://www.jjse.org/'],
-# "Skyline hs": ['https://www.ousd.org/skyline.about.faculty-staff'],
-# "Oakland Technical hs": ['https://oaklandtech.com/staff/counseling/'],
-# }
-
 
 def main():
     """Script to scrape contact informations.
@@ -23,7 +15,7 @@ def main():
     Operates on school URLs that have been manually added.
     """
     # where to save output excel file to
-    datadir = Path("/Users/adam2392/adam@aamplify.us.org - Google Drive/My Drive/AAMPLIFY/Marketing/Summer Program Outreach - Students and Schools/Bay Area High School Outreach")
+    datadir = Path("/Users/adam2392/Downloads/")
     fname = "school_tables_new.xls"
     overwrite = False
 
@@ -44,7 +36,7 @@ def main():
 
     # run parallel scraping
     results = Parallel()(
-        delayed(_scrape_contact_from_url)(url, emails[_schools[i]], phones[_schools[i]])
+        delayed(_scrape_contact_from_url)(url, emails[_schools[i]], phones[_schools[i]], verbose=True)
         for i, url in enumerate(tqdm(_urls))
     )
 

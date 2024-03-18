@@ -77,17 +77,18 @@ SCHOOL_SOCIAL_URLS = {
     'Leland hs': ['https://leland.sjusd.org/student-resources/academic-counseling/'],
     'Pioneer hs': ['https://www.pioneerschools.org/o/phs/page/guidance-office'],
     'Willow Glen hs': ['https://wghs.sjusd.org/student-resources/college-career/'],
-    'Aragon hs': ['https://www.smuhsd.org/Page/1591'],
-    "Burton hs": [
-        "https://burtonhighschool.net/departments/socialsciences.html",
-        "https://burtonhighschool.net/departments/counseling.html",
-    ],
+    # XXX: These 3 urls doesn't seem to work.
+    # 'Aragon hs': ['https://www.smuhsd.org/Page/1591'],
+    # "Balboa hs": [
+    #     "https://www.sfusd.edu/school/balboa-high-school/students/counseling-department"
+    # ],
+    # "Burton hs": [
+    #     "https://burtonhighschool.net/departments/socialsciences.html",
+    #     "https://burtonhighschool.net/departments/counseling.html",
+    # ],
     "Capuchino hs": [
         "https://www.smuhsd.org/domain/661",
         "https://www.smuhsd.org/domain/225",
-    ],
-    "Balboa hs": [
-        "https://www.sfusd.edu/school/balboa-high-school/students/counseling-department"
     ],
     "Castlemont hs": ["https://www.ousd.org/domain/4032"],
     "Downtown hs": ["https://www.sfusd.edu/school/downtown-high-school"],

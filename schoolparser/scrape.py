@@ -183,7 +183,7 @@ def _is_valid(url):
     return bool(parsed.netloc) and bool(parsed.scheme)
 
 
-def read_contactinfo_from_webpage(url):
+def read_contactinfo_from_webpage(url, verbose=False):
     """Read email addresses and phone numbers from a webpage.
 
     Parameters
@@ -205,7 +205,10 @@ def read_contactinfo_from_webpage(url):
     response = session.get(url)
 
     # for JAVA-Script driven websites
-    response.html.render()
+    response.html.render(timeout=20)
+
+    if verbose:
+        print(f'[*] Crawling {url}...')
 
     # search for emails
     email_list = set()
@@ -243,9 +246,13 @@ def read_contactinfo_from_webpage(url):
     return email_list, phone_list
 
 
-def _scrape_contact_from_url(url, school_emails, school_phones):
-    email_list, phone_list = read_contactinfo_from_webpage(url)
-    # store in dictionary
-    school_emails[url] = email_list
-    school_phones[url] = phone_list
-    return email_list, phone_list
+def _scrape_contact_from_url(url, school_emails, school_phones, verbose=False):
+    try:
+        email_list, phone_list = read_contactinfo_from_webpage(url, verbose=verbose)
+        # store in dictionary
+        school_emails[url] = email_list
+        school_phones[url] = phone_list
+    except Exception as e:
+        print(f'Problematic url: ', url)
+    
+
