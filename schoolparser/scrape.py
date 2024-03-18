@@ -6,6 +6,9 @@ import requests
 from bs4 import BeautifulSoup as bs
 from requests_html import HTMLSession
 
+from email_validator import validate_email, EmailNotValidError
+
+
 from schoolparser.base import logger
 
 # init the colorama module
@@ -211,6 +214,23 @@ def read_contactinfo_from_webpage(url):
         if "familylink" in email_found:
             continue
         if not email_found.endswith('.org'):
+            continue
+
+        # check email
+        is_new_account = True # False for login pages
+        try:
+            # Check that the email address is valid.
+            validation = validate_email(email_found, check_deliverability=is_new_account)
+
+            # Take the normalized form of the email address
+            # for all logic beyond this point (especially
+            # before going to a database query where equality
+            # may not take into account Unicode normalization).  
+            email_found = validation.email
+        except EmailNotValidError as e:
+            # Email is not valid.
+            # The exception message is human-readable.
+            print(str(e))
             continue
         email_list.add(email_found)
 

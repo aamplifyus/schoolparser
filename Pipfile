@@ -4,8 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-numpy = "*"
-scipy = "*"
 pandas = "*"
 joblib = "*"
 requests = "*"
@@ -18,6 +16,7 @@ xlrd = "*"
 socials = "*"
 tqdm = "*"
 openpyxl = "*"
+email-validator = "*"
 
 [dev-packages]
 black = "*"
